@@ -1,0 +1,53 @@
+version: '3'
+
+services:
+  #DB Postgres
+  people-postgres:
+    image: 'postgres:13.2-alpine'
+    container_name: people-postgres
+    volumes:
+      - people-data:/var/lib/postgresql/data
+    expose:
+      - 5432
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=people_db
+      - POSTGRES_USER=softplan
+      - POSTGRES_PASSWORD=softplan
+
+  #Backend Springboot api
+  people-api:
+    build: ./people-api
+    container_name: people-api
+
+    environment:
+      - DB_SERVER=people-postgres
+      - POSTGRES_DB=people_db
+      - POSTGRES_USER=softplan
+      - POSTGRES_PASSWORD=softplan
+    expose:
+      - 8080
+    ports:
+      - 8080:8080
+
+    depends_on:
+      - people-postgres
+    links:
+      - people-postgres
+
+  #Front-end Vuejs
+  people-web:
+    build: ./people-web
+    container_name: people-web
+
+    ports:
+      - 8888:8888
+
+    depends_on:
+      - people-api
+    links:
+      - people-api
+
+volumes:
+  people-data:

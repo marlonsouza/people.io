@@ -1,0 +1,27 @@
+version: 3
+
+services:
+  people_api:
+    image: spring-boot-docker-postgres:latest
+    container_name: people-api
+    ports:
+      - '8080:8080'
+    expose:
+      - 8080
+    links:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://people_db:5432/people_db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=docker
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - GOOGLE_CLIENT_ID=720376799896-amlg282ltnqr5akk6fv2prdovre2u3q5.apps.googleusercontent.com
+      - GOOGLE_CLIENT_SECRET=X0-7tHgwPhbvTr7zX4mORTpL
+
+  db:
+    image: 'postgres:13.2-alpine'
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=docker
