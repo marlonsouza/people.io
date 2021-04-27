@@ -33,7 +33,7 @@ public class PessoaEndpoint extends BaseEndpoint<Pessoa> {
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.CREATED)
     @ApiModelProperty("Atualização de pessoa")
-    @CrossOrigin(origins = "http://localhost:8888")
+    @CrossOrigin(origins = {"http://localhost:8888", "http://127.0.0.1:8888"})
     public ResponseEntity<Pessoa> update(@RequestBody Pessoa pessoa, @PathVariable("id") UUID id) throws Exception {
         if(!id.equals(pessoa.getId())){
             return ResponseEntity.badRequest().build();
@@ -62,7 +62,7 @@ public class PessoaEndpoint extends BaseEndpoint<Pessoa> {
 
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @CrossOrigin(origins = "http://localhost:8888")
+    @CrossOrigin(origins = {"http://localhost:8888", "http://127.0.0.1:8888"})
     public void deleteById(@PathVariable("id") UUID id){
         pessoaService.deleteById(id);
     }

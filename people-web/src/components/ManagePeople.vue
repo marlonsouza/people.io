@@ -1,5 +1,5 @@
 <template>
-  <div class="container myform">
+  <div class="myform">
     <div class="row align-items-center">
       <div class="col-md-9">
         <h1>{{ msg }}</h1>

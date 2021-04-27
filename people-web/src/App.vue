@@ -1,7 +1,9 @@
 <template>
   <div id="app" class="main">
-    <ManagePeople msg="Gerenciador de pessoas"/>
-    <People />
+    <div class="container">
+      <ManagePeople msg="Gerenciador de pessoas"/>
+      <People />
+    </div>
   </div>
 </template>
 
@@ -26,7 +28,5 @@ export default {
   background-color: #f1f1f1;
   padding-top: 30px;
   padding-bottom: 30px;
-  height: 100%;
-  position: fixed;
 }
 </style>
