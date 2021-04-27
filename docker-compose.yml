@@ -37,9 +37,9 @@ services:
       - people-postgres
 
   #Front-end Vuejs
-  people-web:
+  people-io:
     build: ./people-web
-    container_name: people-web
+    container_name: people-io
 
     ports:
       - 8888:8888

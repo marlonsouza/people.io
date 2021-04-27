@@ -1,11 +1,15 @@
 FROM node:13
 
+RUN npm install -g http-server
+
 COPY package*.json ./
 
 RUN npm install
 
 COPY . .
 
+RUN npm run build
+
 EXPOSE 8888
 
-CMD ["npm", "run", "serve"]
+CMD [ "http-server", "dist", "--port", "8888" ]
